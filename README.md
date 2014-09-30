@@ -2,8 +2,8 @@
 
 Компиляция [Snakeskin](https://github.com/kobezzza/Snakeskin) шаблонов вместе с Gulp.
 
-[![NPM version](https://badge.fury.io/js/grunt-snakeskin.svg)](http://badge.fury.io/js/gulp-snakeskin)
-[![NPM dependencies](https://david-dm.org/kobezzza/grunt-snakeskin.svg)](https://david-dm.org/kobezzza/gulp-snakeskin)
+[![NPM version](https://badge.fury.io/js/gulp-snakeskin.svg)](http://badge.fury.io/js/gulp-snakeskin)
+[![NPM dependencies](https://david-dm.org/kobezzza/gulp-snakeskin.svg)](https://david-dm.org/kobezzza/gulp-snakeskin)
 
 ## Установка
 
