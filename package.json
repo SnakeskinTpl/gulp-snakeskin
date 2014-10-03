@@ -26,7 +26,7 @@
     "node": ">= 0.10"
   },
   "scripts": {
-    "test": "gulp jshint && tap ./test"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "gulpplugin",
@@ -37,10 +37,5 @@
     "snakeskin": "~5",
     "through2": "~0.5",
     "js-beautify": "~1"
-  },
-  "devDependencies": {
-    "gulp": "~3",
-    "tap": "~0.4",
-    "gulp-jshint": "~1"
   }
 }

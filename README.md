@@ -19,7 +19,7 @@ var snakeskin = require('gulp-snakeskin');
 
 gulp.task('snakeskin', function () {
 	gulp.src('./templates/**/*.ss')
-		.pipe(snakeskin('all.ss.js', {prettyPrint: true}))
+		.pipe(snakeskin({prettyPrint: true}))
 		.pipe(gulp.dest('./public/js'));
 });
 
