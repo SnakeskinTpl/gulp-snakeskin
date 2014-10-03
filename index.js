@@ -1,6 +1,8 @@
 var through = require('through2'),
-	snakeskin = require('snakeskin'),
 	PluginError = require('gulp-util').PluginError;
+
+var snakeskin = require('snakeskin'),
+	beautify = require('js-beautify');
 
 module.exports = function (options) {
 	options = options || {};
@@ -43,12 +45,12 @@ module.exports = function (options) {
 						res = res(options.data);
 
 						if (prettyPrint) {
-							res =  beautify['html'](res);
+							res = beautify['html'](res);
 						}
 					}
 				}
 
-				file.contents = res;
+				file.contents = new Buffer(res);
 
 			} catch (err) {
 				return callback(new PluginError('gulp-snakeskin', err));
