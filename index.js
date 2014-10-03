@@ -1,53 +1,62 @@
-var snakeskin = require('snakeskin');
+var through = require('through2'),
+	snakeskin = require('snakeskin'),
+	PluginError = require('gulp-util').PluginError;
 
-var through = require('through'),
-	gutil = require('gulp-util');
+module.exports = function (options) {
+	options = options || {};
+	options.throws = true;
 
-var PluginError = gutil.PluginError,
-	path = require('path'),
-	File = gutil.File;
-
-module.exports = function (fileName, options) {
-	if (!fileName) {
-		throw new PluginError('gulp-snakeskin', 'Missing fileName option for gulp-snakeskin');
+	var prettyPrint;
+	if (options.exec && options.prettyPrint) {
+		options.prettyPrint = false;
+		prettyPrint = true;
 	}
 
-	options = options || {};
-	var buffer = [],
-		firstFile = null;
+	function compile(file, enc, callback) {
+		var info = {file: file.path};
 
-	function bufferContents(file) {
-		if (file.isNull()) {
-			return;
+		if (options.exec) {
+			file.path += '.html';
+
+		} else {
+			file.path += '.js';
 		}
 
 		if (file.isStream()) {
-			return this.emit('error', new PluginError('gulp-snakeskin', 'Streaming not supported'));
+			return callback(new PluginError('gulp-snakeskin', 'Streaming not supported'));
 		}
 
-		firstFile = firstFile || file;
-		buffer.push(file.contents);
-	}
+		if (file.isBuffer()) {
+			try {
+				var tpls = {};
 
-	function endStream() {
-		if (!buffer.length) {
-			return this.emit('end');
+				if (options.exec) {
+					options.context = tpls;
+				}
+
+				var res = snakeskin.compile(String(file.contents), options, info);
+
+				if (options.exec) {
+					res = snakeskin.returnMainTpl(tpls, info.file, options.tpl) || '';
+
+					if (res) {
+						res = res(options.data);
+
+						if (prettyPrint) {
+							res =  beautify['html'](res);
+						}
+					}
+				}
+
+				file.contents = res;
+
+			} catch (err) {
+				return callback(new PluginError('gulp-snakeskin', err));
+			}
 		}
 
-		var tmpl = snakeskin.compile(buffer.join('\n'), options);
-		var joinedContents = new Buffer(tmpl, 'utf8'),
-			joinedPath = path.join(firstFile.base, fileName);
-
-		var joinedFile = new File({
-			cwd: firstFile.cwd,
-			base: firstFile.base,
-			path: joinedPath,
-			contents: joinedContents
-		});
-
-		this.emit('data', joinedFile);
-		this.emit('end');
+		callback(null, file);
 	}
 
-	return through(bufferContents, endStream);
+	return through.obj(compile);
 };

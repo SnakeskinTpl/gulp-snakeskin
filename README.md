@@ -4,6 +4,7 @@
 
 [![NPM version](https://badge.fury.io/js/gulp-snakeskin.svg)](http://badge.fury.io/js/gulp-snakeskin)
 [![NPM dependencies](https://david-dm.org/kobezzza/gulp-snakeskin.svg)](https://david-dm.org/kobezzza/gulp-snakeskin)
+[![Build Status](https://travis-ci.org/kobezzza/gulp-snakeskin.svg?branch=master)](https://travis-ci.org/kobezzza/gulp-snakeskin)
 
 ## Установка
 
@@ -18,7 +19,7 @@ var snakeskin = require('gulp-snakeskin');
 
 gulp.task('snakeskin', function () {
 	gulp.src('./templates/**/*.ss')
-		.pipe(snakeskin('all.ss.js'), {prettyPrint: true})
+		.pipe(snakeskin('all.ss.js', {prettyPrint: true}))
 		.pipe(gulp.dest('./public/js'));
 });
 
@@ -26,6 +27,31 @@ gulp.task('default', ['snakeskin']);
 ```
 
 ## [Параметры](https://github.com/kobezzza/Snakeskin/wiki/compile#opt_params)
+
+### exec
+
+Тип: `Boolean`
+
+Значение по умолчанию: `false`
+
+Если параметр равен `true`, то после компиляции шаблон будет выполнен и сохранится его результат.
+
+### tpl
+
+Тип: `String`
+
+Название запускаемого шаблона (если задан параметр `exec`), если параметр не задан, то запускаемый шаблон
+определяется по правилу:
+
+```js
+%fileName% || main || index || Object.keys()[0];
+```
+
+### data
+
+Тип: `?`
+
+Данные для запускаемого шаблона (если задан параметр `exec`).
 
 ## Лицензия
 
