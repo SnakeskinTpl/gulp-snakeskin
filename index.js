@@ -6,7 +6,9 @@ var snakeskin = require('snakeskin'),
 
 module.exports = function (options) {
 	options = options || {};
+
 	options.throws = true;
+	options.cache = false;
 
 	var prettyPrint;
 	if (options.exec && options.prettyPrint) {
@@ -53,7 +55,7 @@ module.exports = function (options) {
 				file.contents = new Buffer(res);
 
 			} catch (err) {
-				return callback(new PluginError('gulp-snakeskin', err));
+				return callback(new PluginError('gulp-snakeskin', err.message));
 			}
 		}
 
