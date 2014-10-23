@@ -50,6 +50,8 @@ module.exports = function (options) {
 						if (prettyPrint) {
 							res = beautify['html'](res);
 						}
+
+						res += options.lineSeparator || '\n';
 					}
 				}
 
