@@ -1,5 +1,6 @@
 var through = require('through2'),
-	PluginError = require('gulp-util').PluginError;
+	PluginError = require('gulp-util').PluginError,
+	ext = require('gulp-util').replaceExtension;
 
 var snakeskin = require('snakeskin'),
 	beautify = require('js-beautify');
@@ -20,7 +21,7 @@ module.exports = function (options) {
 		var info = {file: file.path};
 
 		if (options.exec) {
-			file.path += '.html';
+			file.path = ext(file.path, '.html');
 
 		} else {
 			file.path += '.js';
