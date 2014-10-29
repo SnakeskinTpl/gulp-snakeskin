@@ -10,6 +10,7 @@ module.exports = function (options) {
 
 	options.throws = true;
 	options.cache = false;
+	options.lineSeparator = options.lineSeparator || '\n';
 
 	var prettyPrint;
 	if (options.exec && options.prettyPrint) {
@@ -49,9 +50,10 @@ module.exports = function (options) {
 
 						if (prettyPrint) {
 							res = beautify['html'](res);
+							res = res.replace(/\r\n|\r|\n/g, options.lineSeparator);
 						}
 
-						res += options.lineSeparator || '\n';
+						res += options.lineSeparator;
 					}
 				}
 
