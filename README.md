@@ -1,21 +1,22 @@
-# gulp-snakeskin
+# [gulp](http://gulpjs.com/)-snakeskin
 
-Компиляция [Snakeskin](https://github.com/kobezzza/Snakeskin) шаблонов вместе с Gulp.
+Using [Snakeskin](https://github.com/kobezzza/Snakeskin) templates with Gulp.
 
 [![NPM version](http://img.shields.io/npm/v/gulp-snakeskin.svg?style=flat)](http://badge.fury.io/js/gulp-snakeskin)
 [![NPM dependencies](http://img.shields.io/david/kobezzza/gulp-snakeskin.svg?style=flat)](https://david-dm.org/kobezzza/gulp-snakeskin)
 [![Build Status](http://img.shields.io/travis/kobezzza/gulp-snakeskin.svg?style=flat&branch=master)](https://travis-ci.org/kobezzza/gulp-snakeskin)
 
-## Установка
+## Install
 
 ```bash
 npm install gulp-snakeskin --save-dev
 ```
 
-## Пример
+## Usage
 
 ```js
-var snakeskin = require('gulp-snakeskin');
+var gulp = require('gulp'),
+	snakeskin = require('gulp-snakeskin');
 
 gulp.task('snakeskin', function () {
 	gulp.src('./templates/**/*.ss')
@@ -26,22 +27,21 @@ gulp.task('snakeskin', function () {
 gulp.task('default', ['snakeskin']);
 ```
 
-## [Параметры](https://github.com/kobezzza/Snakeskin/wiki/compile#opt_params)
+## [Options](https://github.com/kobezzza/Snakeskin/wiki/compile#opt_params)
 
 ### exec
 
-Тип: `Boolean`
+Type: `Boolean`
 
-Значение по умолчанию: `false`
+Default: `false`
 
-Если параметр равен `true`, то после компиляции шаблон будет выполнен и сохранится его результат.
+If the parameter is set to `true`, after compiling template will be launched and the results of its work will be saved.
 
 ### tpl
 
-Тип: `String`
+Type: `String`
 
-Название запускаемого шаблона (если задан параметр `exec`), если параметр не задан, то запускаемый шаблон
-определяется по правилу:
+The name of the executable template (if set `exec`), if the parameter is not specified, then uses the rule:
 
 ```js
 %fileName% || main || index || Object.keys().sort()[0];
@@ -49,29 +49,10 @@ gulp.task('default', ['snakeskin']);
 
 ### data
 
-Тип: `?`
+Type: `?`
 
-Данные для запускаемого шаблона (если задан параметр `exec`).
+Data for the executable template (if set `exec`).
 
-## Лицензия
+## [License](https://github.com/kobezzza/gulp-snakeskin/blob/master/LICENSE)
 
-The MIT License (MIT)
-
-Copyright (c) 2014 Андрей Кобец (Kobezzza) <kobezzza@mail.ru>
-
-Данная лицензия разрешает лицам, получившим копию данного программного обеспечения и
-сопутствующей документации (в дальнейшем именуемыми «Программное Обеспечение»),
-безвозмездно использовать Программное Обеспечение без ограничений, включая неограниченное право на использование,
-копирование, изменение, добавление, публикацию, распространение, сублицензирование и/или
-продажу копий Программного Обеспечения, также как и лицам, которым предоставляется данное
-Программное Обеспечение, при соблюдении следующих условий:
-
-Указанное выше уведомление об авторском праве и данные условия должны быть включены во все копии или
-значимые части данного Программного Обеспечения.
-
-ДАННОЕ ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ПРЕДОСТАВЛЯЕТСЯ «КАК ЕСТЬ», БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ, ЯВНО ВЫРАЖЕННЫХ ИЛИ ПОДРАЗУМЕВАЕМЫХ,
-ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ ГАРАНТИЯМИ ТОВАРНОЙ ПРИГОДНОСТИ, СООТВЕТСТВИЯ ПО ЕГО КОНКРЕТНОМУ НАЗНАЧЕНИЮ И
-ОТСУТСТВИЯ НАРУШЕНИЙ ПРАВ. НИ В КАКОМ СЛУЧАЕ АВТОРЫ ИЛИ ПРАВООБЛАДАТЕЛИ НЕ НЕСУТ ОТВЕТСТВЕННОСТИ ПО ИСКАМ О
-ВОЗМЕЩЕНИИ УЩЕРБА, УБЫТКОВ ИЛИ ДРУГИХ ТРЕБОВАНИЙ ПО ДЕЙСТВУЮЩИМ КОНТРАКТАМ, ДЕЛИКТАМ ИЛИ ИНОМУ, ВОЗНИКШИМ ИЗ,
-ИМЕЮЩИМ ПРИЧИНОЙ ИЛИ СВЯЗАННЫМ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ ИЛИ ИСПОЛЬЗОВАНИЕМ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ ИЛИ
-ИНЫМИ ДЕЙСТВИЯМИ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ.
+The MIT License.
