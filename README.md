@@ -1,6 +1,6 @@
 # [gulp](http://gulpjs.com/)-snakeskin
 
-Using [Snakeskin](https://github.com/kobezzza/Snakeskin) templates with Gulp.
+Using [Snakeskin](https://github.com/SnakeskinTpl/Snakeskin) templates with Gulp.
 
 [![NPM version](http://img.shields.io/npm/v/gulp-snakeskin.svg?style=flat)](http://badge.fury.io/js/gulp-snakeskin)
 [![NPM dependencies](http://img.shields.io/david/SnakeskinTpl/gulp-snakeskin.svg?style=flat)](https://david-dm.org/SnakeskinTpl/gulp-snakeskin)
@@ -16,7 +16,7 @@ npm install gulp-snakeskin --save-dev
 
 ```js
 var gulp = require('gulp'),
-  snakeskin = require('gulp-snakeskin');
+    snakeskin = require('gulp-snakeskin');
 
 gulp.task('snakeskin', function () {
   gulp.src('./templates/**/*.ss')
