@@ -3,8 +3,8 @@
 Using [Snakeskin](https://github.com/kobezzza/Snakeskin) templates with Gulp.
 
 [![NPM version](http://img.shields.io/npm/v/gulp-snakeskin.svg?style=flat)](http://badge.fury.io/js/gulp-snakeskin)
-[![NPM dependencies](http://img.shields.io/david/kobezzza/gulp-snakeskin.svg?style=flat)](https://david-dm.org/kobezzza/gulp-snakeskin)
-[![Build Status](http://img.shields.io/travis/kobezzza/gulp-snakeskin.svg?style=flat&branch=master)](https://travis-ci.org/kobezzza/gulp-snakeskin)
+[![NPM dependencies](http://img.shields.io/david/SnakeskinTpl/gulp-snakeskin.svg?style=flat)](https://david-dm.org/SnakeskinTpl/gulp-snakeskin)
+[![Build Status](http://img.shields.io/travis/SnakeskinTpl/gulp-snakeskin.svg?style=flat&branch=master)](https://travis-ci.org/SnakeskinTpl/gulp-snakeskin)
 
 ## Install
 
@@ -16,18 +16,18 @@ npm install gulp-snakeskin --save-dev
 
 ```js
 var gulp = require('gulp'),
-	snakeskin = require('gulp-snakeskin');
+  snakeskin = require('gulp-snakeskin');
 
 gulp.task('snakeskin', function () {
-	gulp.src('./templates/**/*.ss')
-		.pipe(snakeskin({prettyPrint: true}))
-		.pipe(gulp.dest('./public/js'));
+  gulp.src('./templates/**/*.ss')
+    .pipe(snakeskin({prettyPrint: true}))
+    .pipe(gulp.dest('./public/js'));
 });
 
 gulp.task('default', ['snakeskin']);
 ```
 
-## [Options](https://github.com/kobezzza/Snakeskin/wiki/compile#opt_params)
+## [Options](https://github.com/SnakeskinTpl/Snakeskin/wiki/compile#opt_params)
 
 ### exec
 
@@ -53,6 +53,6 @@ Type: `?`
 
 Data for the executable template (if set `exec`).
 
-## [License](https://github.com/kobezzza/gulp-snakeskin/blob/master/LICENSE)
+## [License](https://github.com/SnakeskinTpl/gulp-snakeskin/blob/master/LICENSE)
 
 The MIT License.

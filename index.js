@@ -1,8 +1,10 @@
-var through = require('through2'),
+var
+	through = require('through2'),
 	PluginError = require('gulp-util').PluginError,
 	ext = require('gulp-util').replaceExtension;
 
-var snakeskin = require('snakeskin'),
+var
+	snakeskin = require('snakeskin'),
 	beautify = require('js-beautify');
 
 module.exports = function (options) {

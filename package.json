@@ -1,8 +1,8 @@
 {
   "name": "gulp-snakeskin",
   "description": "Using Snakeskin templates with Gulp.",
-  "version": "1.1.8",
-  "homepage": "https://github.com/kobezzza/gulp-snakeskin",
+  "version": "1.1.9",
+  "homepage": "https://github.com/SnakeskinTpl/gulp-snakeskin",
   "author": {
     "name": "kobezzza",
     "email": "kobezzza@mail.ru",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/kobezzza/gulp-snakeskin.git"
+    "url": "git://github.com/SnakeskinTpl/gulp-snakeskin.git"
   },
   "bugs": {
-    "url": "https://github.com/kobezzza/gulp-snakeskin/issues"
+    "url": "https://github.com/SnakeskinTpl/gulp-snakeskin/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/kobezzza/gulp-snakeskin/blob/master/LICENSE"
+      "url": "https://github.com/SnakeskinTpl/gulp-snakeskin/blob/master/LICENSE"
     }
   ],
   "main": "index.js",
