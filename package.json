@@ -1,7 +1,7 @@
 {
   "name": "gulp-snakeskin",
   "description": "Using Snakeskin templates with Gulp.",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "homepage": "https://github.com/SnakeskinTpl/gulp-snakeskin",
   "author": {
     "name": "kobezzza",
@@ -37,5 +37,8 @@
     "js-beautify": "^1.5.4",
     "snakeskin": "^6.0.0",
     "through2": "^0.6.3"
+  },
+  "devDependencies": {
+    "jscs": "^1.12.0"
   }
 }
