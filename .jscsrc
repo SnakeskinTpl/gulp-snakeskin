@@ -1,27 +1,25 @@
 {
-  "esnext": true,
   "fileExtensions": [".js"],
   "excludeFiles": [
-    "node_modules/**/*"
+    "node_modules/**"
   ],
 
   "validateIndentation": "\t",
   "disallowMixedSpacesAndTabs": "smart",
   "disallowTrailingWhitespace": true,
-
   "validateLineBreaks": "LF",
   "requireLineFeedAtFileEnd": true,
   "disallowMultipleSpaces": true,
-
   "maximumLineLength": {
     "value": 120,
-    "allowUrlComments": true
+    "allowComments": true
   },
 
   "disallowYodaConditions": true,
   "validateQuoteMarks": "'",
   "requireSemicolons": true,
 
+  "disallowSpaceBeforeComma": true,
   "requireCommaBeforeLineBreak": true,
   "disallowMultipleLineStrings": true,
   "disallowMultipleLineBreaks": true,
@@ -32,17 +30,57 @@
   "requireSpaceBeforeObjectValues": true,
   "disallowTrailingComma": true,
 
-  "requireSpaceAfterLineComment": true,
+  "requireSpaceAfterLineComment": {
+    "allExcept": [
+      "#include",
+      "#without",
+      "#label",
+      "#endlabel",
+      "#if",
+      "#endif",
+      "#unless",
+      "#endunless",
+      "#set",
+      "#unset",
+      "#end"
+    ]
+  },
+
+  "requirePaddingNewLinesAfterUseStrict": true,
+  "validateNewlineAfterArrayElements": true,
   "requireLineBreakAfterVariableAssignment": true,
-  "requirePaddingNewLinesAfterBlocks": true,
+  "requirePaddingNewLinesAfterBlocks": {
+    "allExcept": [
+      "inCallExpressions",
+      "inNewExpressions",
+      "inArrayExpressions",
+      "inProperties"
+    ]
+  },
+
   "requireSpaceBeforeBlockStatements": true,
   "disallowNewlineBeforeBlockStatements": true,
-
   "requireSpacesInForStatement": true,
   "requireSpaceBeforeBinaryOperators": true,
   "requireSpaceAfterBinaryOperators": true,
   "requireSpaceBetweenArguments": true,
   "disallowSpacesInCallExpression": true,
+
+  "jsDoc": {
+    "checkAnnotations": {
+      "preset": "closurecompiler",
+      "extra": {
+        "abstract": false
+      }
+    },
+    "checkTypes": "strictNativeCase",
+    "checkParamNames": true,
+    "requireParamTypes": true,
+    "checkReturnTypes": true,
+    "requireReturnTypes": true,
+    "requireHyphenBeforeDescription": true,
+    "requireNewlineAfterDescription": true
+  },
 
   "requireCurlyBraces": [
     "if",
@@ -89,10 +127,10 @@
 
   "disallowOperatorBeforeLineBreak": [
     "~",
-    ".",
-    "::"
+    "."
   ],
 
+  "validateAlignedFunctionParameters": true,
   "requireSpacesInFunctionDeclaration": {
     "beforeOpeningCurlyBrace": true
   },
