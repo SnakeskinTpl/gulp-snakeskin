@@ -37,13 +37,13 @@ Type: `Boolean`
 
 Default: `false`
 
-If the parameter is set to `true`, after compiling template will be launched and the results of its work will be saved.
+If the parameter is set to `true` the template will be launched after compiling and the results of it work will be saved.
 
 ### tpl
 
 Type: `String`
 
-The name of the executable template (if set `exec`), if the parameter is not specified, then uses the rule:
+The name of the executable template (if is set `exec`), if the parameter is not specified, then uses the rule:
 
 ```js
 %fileName% || main || index || Object.keys().sort()[0];
@@ -53,7 +53,7 @@ The name of the executable template (if set `exec`), if the parameter is not spe
 
 Type: `?`
 
-Data for the executable template (if set `exec`).
+Data for the executable template (if is set `exec`).
 
 ## [License](https://github.com/SnakeskinTpl/gulp-snakeskin/blob/master/LICENSE)
 
