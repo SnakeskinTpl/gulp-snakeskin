@@ -49,3 +49,11 @@ node_modules
 # Temporary
 *.tmp
 /tmp
+
+# NPM ignore list
+/.editorconfig
+/.jscsrc
+/.travis.yml
+/.gitignore
+/.gitattributes
+/.npmignore

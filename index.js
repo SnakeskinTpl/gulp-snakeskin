@@ -1,3 +1,11 @@
+/*!
+ * gulp-snakeskin
+ * https://github.com/SnakeskinTpl/gulp-snakeskin
+ *
+ * Released under the MIT license
+ * https://github.com/SnakeskinTpl/gulp-snakeskin/blob/master/LICENSE
+ */
+
 var
 	through = require('through2'),
 	PluginError = require('gulp-util').PluginError,

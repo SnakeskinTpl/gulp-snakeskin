@@ -1,8 +1,10 @@
 {
   "name": "gulp-snakeskin",
   "description": "Using Snakeskin templates with Gulp.",
-  "version": "1.1.10",
+  "license": "MIT",
   "homepage": "https://github.com/SnakeskinTpl/gulp-snakeskin",
+  "main": "index.js",
+  "version": "6.0.0",
   "author": {
     "name": "kobezzza",
     "email": "kobezzza@mail.ru",
@@ -15,8 +17,6 @@
   "bugs": {
     "url": "https://github.com/SnakeskinTpl/gulp-snakeskin/issues"
   },
-  "license": "MIT",
-  "main": "index.js",
   "engines": {
     "node": ">= 0.10"
   },
@@ -31,7 +31,7 @@
     "gulp-util": "^3.0.1",
     "js-beautify": "^1.5.4",
     "snakeskin": "^6.0.0",
-    "through2": "^0.6.3"
+    "through2": "^2.0.0"
   },
   "devDependencies": {
     "jscs": "^2.0.0"

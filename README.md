@@ -1,4 +1,5 @@
-# [gulp](http://gulpjs.com/)-snakeskin
+[gulp](http://gulpjs.com/)-snakeskin
+====================================
 
 Using [Snakeskin](https://github.com/SnakeskinTpl/Snakeskin) templates with Gulp.
 
