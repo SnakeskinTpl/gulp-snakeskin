@@ -20,7 +20,7 @@ module.exports = function (options) {
 
 	options.throws = true;
 	options.cache = false;
-	options.lineSeparator = options.lineSeparator || '\n';
+	options.eol = options.eol || '\n';
 
 	var prettyPrint;
 	if (options.exec && options.prettyPrint) {
@@ -60,10 +60,10 @@ module.exports = function (options) {
 
 						if (prettyPrint) {
 							res = beautify['html'](res);
-							res = res.replace(/\r?\n|\r/g, options.lineSeparator);
+							res = res.replace(/\r?\n|\r/g, options.eol);
 						}
 
-						res += options.lineSeparator;
+						res += options.eol;
 					}
 				}
 
