@@ -53,7 +53,7 @@ module.exports = function (options) {
 				var res = snakeskin.compile(String(file.contents), options, info);
 
 				if (options.exec) {
-					res = snakeskin.returnMainTpl(tpls, info.file, options.tpl) || '';
+					res = snakeskin.getMainTpl(tpls, info.file, options.tpl) || '';
 
 					if (res) {
 						res = res(options.data);
