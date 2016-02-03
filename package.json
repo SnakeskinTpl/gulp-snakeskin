@@ -35,10 +35,10 @@
   "devDependencies": {
     "gulp": "^3.9.0",
     "jscs": "^2.0.0",
-    "snakeskin": "git://github.com/SnakeskinTpl/Snakeskin.git#v7.0"
+    "snakeskin": "git://github.com/SnakeskinTpl/Snakeskin.git"
   },
   "peerDependencies": {
     "gulp": "*",
-    "snakeskin": "git://github.com/SnakeskinTpl/Snakeskin.git#v7.0"
+    "snakeskin": "git://github.com/SnakeskinTpl/Snakeskin.git"
   }
 }
