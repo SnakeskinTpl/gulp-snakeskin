@@ -17,29 +17,29 @@ var
 	exists = require('exists-sync'),
 	path = require('path');
 
-module.exports = function (options) {
+module.exports = function (opts) {
 	var
 		ssrc = path.join(process.cwd(), '.snakeskinrc');
 
-	if (!options && exists(ssrc)) {
-		options = snakeskin.toObj(ssrc);
+	if (!opts && exists(ssrc)) {
+		opts = snakeskin.toObj(ssrc);
 	}
 
-	options = options || {};
-	options.throws = true;
-	options.cache = false;
-	options.eol = options.eol || '\n';
+	opts = opts || {};
+	opts.throws = true;
+	opts.cache = false;
+	opts.eol = opts.eol || '\n';
 
 	var prettyPrint;
-	if (options.exec && options.prettyPrint) {
-		options.prettyPrint = false;
+	if (opts.exec && opts.prettyPrint) {
+		opts.prettyPrint = false;
 		prettyPrint = true;
 	}
 
 	function compile(file, enc, callback) {
 		var info = {file: file.path};
 
-		if (options.exec) {
+		if (opts.exec) {
 			file.path = ext(file.path, '.html');
 
 		} else {
@@ -54,24 +54,24 @@ module.exports = function (options) {
 			try {
 				var tpls = {};
 
-				if (options.exec) {
-					options.context = tpls;
+				if (opts.exec) {
+					opts.context = tpls;
 				}
 
-				var res = snakeskin.compile(String(file.contents), options, info);
+				var res = snakeskin.compile(String(file.contents), opts, info);
 
-				if (options.exec) {
-					res = snakeskin.getMainTpl(tpls, info.file, options.tpl) || '';
+				if (opts.exec) {
+					res = snakeskin.getMainTpl(tpls, info.file, opts.tpl) || '';
 
 					if (res) {
-						res = res(options.data);
+						res = res(opts.data);
 
 						if (prettyPrint) {
 							res = beautify['html'](res);
-							res = res.replace(/\r?\n|\r/g, options.eol);
+							res = res.replace(/\r?\n|\r/g, opts.eol);
 						}
 
-						res += options.eol;
+						res += opts.eol;
 					}
 				}
 
