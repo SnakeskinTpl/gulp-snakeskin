@@ -13,11 +13,19 @@ var
 
 var
 	snakeskin = require('snakeskin'),
-	beautify = require('js-beautify');
+	beautify = require('js-beautify'),
+	exists = require('exists-sync'),
+	path = require('path');
 
 module.exports = function (options) {
-	options = options || {};
+	var
+		ssrc = path.join(process.cwd(), '.snakeskinrc');
 
+	if (!options && exists(ssrc)) {
+		options = snakeskin.toObj(ssrc);
+	}
+
+	options = options || {};
 	options.throws = true;
 	options.cache = false;
 	options.eol = options.eol || '\n';
