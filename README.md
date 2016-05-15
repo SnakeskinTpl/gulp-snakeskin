@@ -31,7 +31,6 @@ gulp.task('default', ['snakeskin']);
 ```
 
 ## [Options](http://snakeskintpl.github.io/docs/api.html#compile--opt_params)
-
 ### exec
 
 Type: `Boolean`
