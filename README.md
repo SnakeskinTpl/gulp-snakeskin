@@ -6,6 +6,7 @@ Using [Snakeskin](https://github.com/SnakeskinTpl/Snakeskin) templates with Gulp
 [![NPM version](http://img.shields.io/npm/v/gulp-snakeskin.svg?style=flat)](http://badge.fury.io/js/gulp-snakeskin)
 [![NPM dependencies](http://img.shields.io/david/SnakeskinTpl/gulp-snakeskin.svg?style=flat)](https://david-dm.org/SnakeskinTpl/gulp-snakeskin)
 [![NPM devDependencies](http://img.shields.io/david/dev/SnakeskinTpl/gulp-snakeskin.svg?style=flat)](https://david-dm.org/SnakeskinTpl/gulp-snakeskin#info=devDependencies&view=table)
+[![NPM peerDependencies](https://david-dm.org/SnakeskinTpl/gulp-snakeskin/peer-status.svg)](https://david-dm.org/SnakeskinTpl/gulp-snakeskin#info=peerDependencies)
 [![Build Status](http://img.shields.io/travis/SnakeskinTpl/gulp-snakeskin.svg?style=flat&branch=master)](https://travis-ci.org/SnakeskinTpl/gulp-snakeskin)
 
 ## Install
