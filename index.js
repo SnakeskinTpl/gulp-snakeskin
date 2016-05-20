@@ -72,7 +72,7 @@ module.exports = function (opts) {
 						var val = prop + '["' + key.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"]';
 
 						if (typeof el !== 'function') {
-							res += 'if (' + val + ' instanceof Object === false) {' + n + '\t' + val + ' = {};' + n + '}' + n + n;
+							res += 'if (' + val + ' instanceof Object === false) {' + n + '  ' + val + ' = {};' + n + '}' + n + n;
 							return compileJSX(el, val);
 						}
 
