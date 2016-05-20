@@ -66,8 +66,7 @@ module.exports = function (opts) {
 				}
 
 				var res = snakeskin.compile(String(file.contents), opts, info);
-
-				function compileJSX(tpls, prop) {
+				var compileJSX = function (tpls, prop) {
 					prop = prop || 'exports';
 					$C(tpls).forEach(function (el, key) {
 						var val = prop + '["' + key.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"]';
@@ -84,7 +83,7 @@ module.exports = function (opts) {
 							'transform-react-display-name'
 						]}).code;
 					});
-				}
+				};
 
 				if (opts.jsx) {
 					res = '';
