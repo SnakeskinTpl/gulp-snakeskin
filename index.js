@@ -77,11 +77,14 @@ module.exports = function (opts) {
 						}
 
 						var decl = /function .*?\)\s*\{/.exec(el.toString());
-						res += babel.transform(val + ' = ' + decl[0] + ' ' + el(opts.data) + '};', {plugins: [
-							'syntax-jsx',
-							'transform-react-jsx',
-							'transform-react-display-name'
-						]}).code;
+						res += babel.transform(val + ' = ' + decl[0] + ' ' + el(opts.data) + '};', {
+							babelrc: false,
+							plugins: [
+								require('babel-plugin-syntax-jsx'),
+								require('babel-plugin-transform-react-jsx'),
+								require('babel-plugin-transform-react-display-name')
+							]
+						}).code;
 					});
 				};
 
