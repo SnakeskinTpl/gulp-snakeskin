@@ -38,7 +38,6 @@ Type: `Boolean`
 Default: `false`
 
 If the parameter is set to `true` the templates will be converted for using with [React](https://facebook.github.io/react/index.html).
-If React attached as an external script, don't forget to add the external to the WebPack config.
 
 ### exec
 
