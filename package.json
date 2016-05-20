@@ -4,7 +4,7 @@
   "license": "MIT",
   "homepage": "https://github.com/SnakeskinTpl/gulp-snakeskin",
   "main": "index.js",
-  "version": "7.0.4",
+  "version": "7.1.0",
   "author": {
     "name": "kobezzza",
     "email": "kobezzza@mail.ru",
@@ -28,6 +28,8 @@
     "snakeskin"
   ],
   "dependencies": {
+    "babel-core": "^6.9.0",
+    "collection.js": "^5.5.6",
     "exists-sync": "0.0.3",
     "gulp-util": "^3.0.1",
     "js-beautify": "^1.5.4",
