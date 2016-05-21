@@ -77,6 +77,7 @@ module.exports = function (opts) {
 
 				if (opts.exec || opts.jsx) {
 					opts.context = tpls;
+					opts.module = 'cjs';
 				}
 
 				var res = snakeskin.compile(String(file.contents), opts, info);
@@ -117,8 +118,12 @@ module.exports = function (opts) {
 							return compileJSX(el, val);
 						}
 
-						var decl = /function .*?\)\s*\{/.exec(el.toString());
-						res += babel.transform(val + ' = ' + decl[0] + ' ' + el(opts.data) + '};', {
+						var
+							decl = /function .*?\)\s*\{/.exec(el.toString()),
+							text = el(opts.data);
+
+						text = val + ' = ' + decl[0] + (/\breturn\s+\(?\s*[{<](?!\/)/.test(text) ? '' : 'return ') + text + '};';
+						res += babel.transform(text, {
 							babelrc: false,
 							plugins: [
 								require('babel-plugin-syntax-jsx'),
