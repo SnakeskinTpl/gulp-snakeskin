@@ -143,29 +143,29 @@ module.exports = function (opts) {
 					} else {
 						res +=
 							'(function(global, factory) {' +
-							(
-								{cjs: true, umd: true}[mod] ?
-									'if (typeof exports === "object" && typeof module !== "undefined") {' +
-										'factory(exports, typeof React === "undefined" ? require("react") : React);' +
-										'return;' +
-									'}' :
-									''
-							) +
+								(
+									{cjs: true, umd: true}[mod] ?
+										'if (typeof exports === "object" && typeof module !== "undefined") {' +
+											'factory(exports, typeof React === "undefined" ? require("react") : React);' +
+											'return;' +
+										'}' :
+										''
+								) +
 
-							(
-								{amd: true, umd: true}[mod] ?
-									'if (typeof define === "function" && define.amd) {' +
-										'define("' + (opts.moduleId) + '", ["exports", "react"], factory);' +
-										'return;' +
-									'}' :
-									''
-							) +
+								(
+									{amd: true, umd: true}[mod] ?
+										'if (typeof define === "function" && define.amd) {' +
+											'define("' + (opts.moduleId) + '", ["exports", "react"], factory);' +
+											'return;' +
+										'}' :
+										''
+								) +
 
-							(
-								{global: true, umd: true}[mod] ?
-									'factory(global' + (opts.moduleName ? '.' + opts.moduleName + '= {}' : '') + ', React);' :
-									''
-							) +
+								(
+									{global: true, umd: true}[mod] ?
+										'factory(global' + (opts.moduleName ? '.' + opts.moduleName + '= {}' : '') + ', React);' :
+										''
+								) +
 
 							'})(this, function (exports, React) {' +
 								useStrict
