@@ -51,6 +51,7 @@ module.exports = function (opts) {
 	if (opts.jsx) {
 		opts.literalBounds = ['{', '}'];
 		opts.renderMode = 'stringConcat';
+		opts.doctype = 'strict';
 		opts.exec = false;
 
 	} else if (opts.exec && opts.prettyPrint) {
