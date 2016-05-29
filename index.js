@@ -63,8 +63,8 @@ module.exports = function (opts) {
 					var tpls = {};
 
 					if (opts.exec) {
-						opts.context = tpls;
 						opts.module = 'cjs';
+						opts.context = tpls;
 					}
 
 					res = snakeskin.compile(String(file.contents), opts, info);
