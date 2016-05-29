@@ -55,6 +55,7 @@ module.exports = function (opts) {
 
 		if (file.isBuffer()) {
 			try {
+				var res;
 				if (opts.jsx) {
 					res = snakeskin.compileAsJSX(String(file.contents), opts, info);
 
@@ -66,7 +67,7 @@ module.exports = function (opts) {
 						opts.module = 'cjs';
 					}
 
-					var res = snakeskin.compile(String(file.contents), opts, info);
+					res = snakeskin.compile(String(file.contents), opts, info);
 
 					if (opts.exec) {
 						res = snakeskin.getMainTpl(tpls, info.file, opts.tpl) || '';
