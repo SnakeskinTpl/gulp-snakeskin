@@ -9,14 +9,12 @@
 require('core-js/es6/object');
 
 var
-	$C = require('collection.js').$C,
 	through = require('through2'),
 	PluginError = require('gulp-util').PluginError,
 	ext = require('gulp-util').replaceExtension;
 
 var
 	snakeskin = require('snakeskin'),
-	babel = require('babel-core'),
 	beautify = require('js-beautify'),
 	exists = require('exists-sync'),
 	path = require('path');
@@ -27,34 +25,17 @@ module.exports = function (opts) {
 		opts = snakeskin.toObj(ssrc);
 	}
 
-	opts = Object.assign(
-		{
-			module: 'umd',
-			moduleId: 'tpls',
-			useStrict: true,
-			eol: '\n'
-		},
-
-		opts
-	);
+	opts = Object.assign({eol: '\n'}, opts);
 
 	var
 		eol = opts.eol,
-		mod = opts.module,
-		useStrict = opts.useStrict ? '"useStrict";' : '',
 		prettyPrint = opts.prettyPrint,
 		nRgxp = /\r?\n|\r/g;
 
 	opts.throws = true;
 	opts.cache = false;
 
-	if (opts.jsx) {
-		opts.literalBounds = ['{', '}'];
-		opts.renderMode = 'stringConcat';
-		opts.doctype = 'strict';
-		opts.exec = false;
-
-	} else if (opts.exec && opts.prettyPrint) {
+	if (opts.exec && opts.prettyPrint) {
 		opts.prettyPrint = false;
 	}
 
@@ -74,132 +55,31 @@ module.exports = function (opts) {
 
 		if (file.isBuffer()) {
 			try {
-				var tpls = {};
-
-				if (opts.exec || opts.jsx) {
-					opts.context = tpls;
-					opts.module = 'cjs';
-				}
-
-				var res = snakeskin.compile(String(file.contents), opts, info);
-				var testId = function (id) {
-					try {
-						var obj = {};
-						eval('obj.' + id + '= true');
-						return true;
-
-					} catch (ignore) {
-						return false;
-					}
-				};
-
-				var compileJSX = function (tpls, prop) {
-					prop = prop || 'exports';
-					$C(tpls).forEach(function (el, key) {
-						var
-							val,
-							validKey = false;
-
-						if (testId(key)) {
-							val = prop + '.' + key;
-							validKey = true;
-
-						} else {
-							val = prop + '["' + key.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"]';
-						}
-
-						if (typeof el !== 'function') {
-							res +=
-								'if (' + val + ' instanceof Object === false) {' +
-									val + ' = {};' +
-									(validKey && mod === 'native' ? 'export var ' + key + '=' + val + ';' : '') +
-								'}'
-							;
-
-							return compileJSX(el, val);
-						}
-
-						var
-							decl = /function .*?\)\s*\{/.exec(el.toString()),
-							text = el(opts.data);
-
-						text = val + ' = ' + decl[0] + (/\breturn\s+\(?\s*[{<](?!\/)/.test(text) ? '' : 'return ') + text + '};';
-						res += babel.transform(text, {
-							babelrc: false,
-							plugins: [
-								require('babel-plugin-syntax-jsx'),
-								require('babel-plugin-transform-react-jsx'),
-								require('babel-plugin-transform-react-display-name')
-							]
-						}).code;
-					});
-				};
-
 				if (opts.jsx) {
-					res = /\/\*[\s\S]*?\*\//.exec(res)[0];
+					res = snakeskin.compileAsJSX(String(file.contents), opts, info);
 
-					if (mod === 'native') {
-						res +=
-							useStrict +
-							'import React from "react";' +
-							'var exports = {};' +
-							'export default exports;'
-						;
+				} else {
+					var tpls = {};
 
-					} else {
-						res +=
-							'(function(global, factory) {' +
-								(
-									{cjs: true, umd: true}[mod] ?
-										'if (typeof exports === "object" && typeof module !== "undefined") {' +
-											'factory(exports, typeof React === "undefined" ? require("react") : React);' +
-											'return;' +
-										'}' :
-										''
-								) +
-
-								(
-									{amd: true, umd: true}[mod] ?
-										'if (typeof define === "function" && define.amd) {' +
-											'define("' + (opts.moduleId) + '", ["exports", "react"], factory);' +
-											'return;' +
-										'}' :
-										''
-								) +
-
-								(
-									{global: true, umd: true}[mod] ?
-										'factory(global' + (opts.moduleName ? '.' + opts.moduleName + '= {}' : '') + ', React);' :
-										''
-								) +
-
-							'})(this, function (exports, React) {' +
-								useStrict
-						;
+					if (opts.exec) {
+						opts.context = tpls;
+						opts.module = 'cjs';
 					}
 
-					compileJSX(tpls);
-					if (mod !== 'native') {
-						res += '});';
-					}
+					var res = snakeskin.compile(String(file.contents), opts, info);
 
-					if (prettyPrint) {
-						res = beautify.js(res);
-					}
+					if (opts.exec) {
+						res = snakeskin.getMainTpl(tpls, info.file, opts.tpl) || '';
 
-					res = res.replace(nRgxp, eol) + eol;
+						if (res) {
+							res = res(opts.data);
 
-				} else if (opts.exec) {
-					res = snakeskin.getMainTpl(tpls, info.file, opts.tpl) || '';
+							if (prettyPrint) {
+								res = beautify.html(res);
+							}
 
-					if (res) {
-						res = res(opts.data);
-
-						if (prettyPrint) {
-							res = beautify.html(res);
+							res = res.replace(nRgxp, eol) + eol;
 						}
-
-						res = res.replace(nRgxp, eol) + eol;
 					}
 				}
 

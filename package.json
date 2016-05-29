@@ -4,7 +4,7 @@
   "license": "MIT",
   "homepage": "https://github.com/SnakeskinTpl/gulp-snakeskin",
   "main": "index.js",
-  "version": "7.1.6",
+  "version": "7.1.7",
   "author": {
     "name": "kobezzza",
     "email": "kobezzza@mail.ru",
@@ -28,11 +28,6 @@
     "snakeskin"
   ],
   "dependencies": {
-    "babel-core": "^6.9.0",
-    "babel-plugin-syntax-jsx": "^6.8.0",
-    "babel-plugin-transform-react-display-name": "^6.8.0",
-    "babel-plugin-transform-react-jsx": "^6.8.0",
-    "collection.js": "^5.5.6",
     "core-js": "^2.4.0",
     "exists-sync": "0.0.3",
     "gulp-util": "^3.0.1",
@@ -42,10 +37,10 @@
   "devDependencies": {
     "gulp": "^3.9.0",
     "jscs": "^3.0.0",
-    "snakeskin": "^7.0.0"
+    "snakeskin": "^7.0.10"
   },
   "peerDependencies": {
     "gulp": "*",
-    "snakeskin": "^7.0.0"
+    "snakeskin": "^7.0.10"
   }
 }
