@@ -37,8 +37,8 @@ Type: `String`
 
 Name of the adaptor, for example:
 
-* [ss2react](https://github.com/SnakeskinTpl/ss2react) compiles Snakeskin for React;
-* [ss2vue](https://github.com/SnakeskinTpl/ss2vue) compiles Snakeskin for Vue2.
+* [ss2react](https://github.com/SnakeskinTpl/ss2react) compiles Snakeskin for React
+* [ss2vue](https://github.com/SnakeskinTpl/ss2vue) compiles Snakeskin for Vue2
 
 ### adaptorOptions
 
