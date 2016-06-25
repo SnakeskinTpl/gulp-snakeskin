@@ -54,7 +54,6 @@ module.exports = function (opts) {
 		}
 
 		if (file.isBuffer()) {
-			var res;
 			if (opts.adaptor || opts.jsx) {
 				require(opts.jsx ? 'ss2react' : opts.adaptor).adaptor(String(file.contents), opts, info).then(
 					function (res) {
@@ -76,7 +75,7 @@ module.exports = function (opts) {
 						opts.context = tpls;
 					}
 
-					res = snakeskin.compile(String(file.contents), opts, info);
+					var res = snakeskin.compile(String(file.contents), opts, info);
 
 					if (opts.exec) {
 						res = snakeskin.getMainTpl(tpls, info.file, opts.tpl) || '';
