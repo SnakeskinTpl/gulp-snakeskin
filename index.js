@@ -54,12 +54,21 @@ module.exports = function (opts) {
 		}
 
 		if (file.isBuffer()) {
-			try {
-				var res;
-				if (opts.jsx) {
-					res = snakeskin.compileAsJSX(String(file.contents), opts, info);
+			var res;
+			if (opts.adaptor || opts.jsx) {
+				require(opts.jsx ? 'ss2react' : opts.adaptor).adaptor(String(file.contents), opts, info).then(
+					function (res) {
+						file.contents = new Buffer(res);
+						callback(null, file);
+					},
 
-				} else {
+					function (err) {
+						callback(new PluginError('gulp-snakeskin', err.message));
+					}
+				);
+
+			} else {
+				try {
 					var tpls = {};
 
 					if (opts.exec) {
@@ -82,16 +91,15 @@ module.exports = function (opts) {
 							res = res.replace(nRgxp, eol) + eol;
 						}
 					}
+
+					file.contents = new Buffer(res);
+					callback(null, file);
+
+				} catch (err) {
+					return callback(new PluginError('gulp-snakeskin', err.message));
 				}
-
-				file.contents = new Buffer(res);
-
-			} catch (err) {
-				return callback(new PluginError('gulp-snakeskin', err.message));
 			}
 		}
-
-		callback(null, file);
 	}
 
 	return through.obj(compile);

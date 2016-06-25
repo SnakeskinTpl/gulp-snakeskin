@@ -31,13 +31,20 @@ gulp.task('default', ['snakeskin']);
 ```
 
 ## [Options](http://snakeskintpl.github.io/docs/api.html#compile--opt_params)
-### jsx
+### adaptor
 
-Type: `Boolean`
+Type: `String`
 
-Default: `false`
+Name of the adaptor, for example:
 
-If the parameter is set to `true` the templates will be converted for using with [React](https://facebook.github.io/react/index.html).
+* [ss2react](https://github.com/SnakeskinTpl/ss2react) compiles Snakeskin for React;
+* [ss2vue](https://github.com/SnakeskinTpl/ss2vue) compiles Snakeskin for Vue2.
+
+### adaptorOptions
+
+Type: `Object`
+
+Options for the used adaptor.
 
 ### exec
 
