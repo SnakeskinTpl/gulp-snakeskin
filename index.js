@@ -39,7 +39,7 @@ module.exports = function (opts) {
 		opts.prettyPrint = false;
 	}
 
-	function compile(file, enc, callback) {
+	function compile(file, enc, cb) {
 		var info = {file: file.path};
 
 		if (opts.exec) {
@@ -50,53 +50,60 @@ module.exports = function (opts) {
 		}
 
 		if (file.isStream()) {
-			return callback(new PluginError('gulp-snakeskin', 'Streaming not supported'));
+			return cb(new PluginError('gulp-snakeskin', 'Streaming not supported'));
 		}
 
 		if (file.isBuffer()) {
+			var res;
 			if (opts.adaptor || opts.jsx) {
-				require(opts.jsx ? 'ss2react' : opts.adaptor).adaptor(String(file.contents), opts, info).then(
+				return require(opts.jsx ? 'ss2react' : opts.adaptor).adaptor(String(file.contents), opts, info).then(
 					function (res) {
 						file.contents = new Buffer(res);
-						callback(null, file);
+						cb(null, file);
 					},
 
 					function (err) {
-						callback(new PluginError('gulp-snakeskin', err.message));
+						cb(new PluginError('gulp-snakeskin', err.message));
 					}
 				);
+			}
 
-			} else {
-				try {
-					var tpls = {};
+			try {
+				var tpls = {};
 
-					if (opts.exec) {
-						opts.module = 'cjs';
-						opts.context = tpls;
-					}
-
-					var res = snakeskin.compile(String(file.contents), opts, info);
-
-					if (opts.exec) {
-						res = snakeskin.getMainTpl(tpls, info.file, opts.tpl) || '';
-
-						if (res) {
-							res = res(opts.data);
-
-							if (prettyPrint) {
-								res = beautify.html(res);
-							}
-
-							res = res.replace(nRgxp, eol) + eol;
-						}
-					}
-
-					file.contents = new Buffer(res);
-					callback(null, file);
-
-				} catch (err) {
-					return callback(new PluginError('gulp-snakeskin', err.message));
+				if (opts.exec) {
+					opts.module = 'cjs';
+					opts.context = tpls;
 				}
+
+				res = snakeskin.compile(String(file.contents), opts, info);
+
+				if (opts.exec) {
+					res = snakeskin.getMainTpl(tpls, info.file, opts.tpl) || '';
+
+					if (res) {
+						return snakeskin.execTpl(res, opts.data).then(
+							function (res) {
+								if (prettyPrint) {
+									res = beautify.html(res);
+								}
+
+								file.contents = new Buffer(res.replace(nRgxp, eol) + eol);
+								cb(null, file);
+							},
+
+							function (err) {
+								cb(new PluginError('gulp-snakeskin', err.message));
+							}
+						);
+					}
+				}
+
+				file.contents = new Buffer(res);
+				cb(null, file);
+
+			} catch (err) {
+				return cb(new PluginError('gulp-snakeskin', err.message));
 			}
 		}
 	}

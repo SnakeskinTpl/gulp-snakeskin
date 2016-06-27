@@ -4,7 +4,7 @@
   "license": "MIT",
   "homepage": "https://github.com/SnakeskinTpl/gulp-snakeskin",
   "main": "index.js",
-  "version": "7.2.0",
+  "version": "7.2.1",
   "author": {
     "name": "kobezzza",
     "email": "kobezzza@mail.ru",
@@ -37,10 +37,10 @@
   "devDependencies": {
     "eslint": "^2.13.1",
     "gulp": "^3.9.0",
-    "snakeskin": "^7.1.0"
+    "snakeskin": "^7.1.3"
   },
   "peerDependencies": {
     "gulp": "*",
-    "snakeskin": "^7.1.0"
+    "snakeskin": "^7.1.3"
   }
 }
