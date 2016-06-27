@@ -31,7 +31,7 @@ gulp.task('default', ['snakeskin']);
 ```
 
 ## [Options](http://snakeskintpl.github.io/docs/api.html#compile--opt_params)
-### adaptor
+### adapter
 
 Type: `String`
 
@@ -40,7 +40,7 @@ Name of the adaptor, for example:
 * [ss2react](https://github.com/SnakeskinTpl/ss2react) compiles Snakeskin for React
 * [ss2vue](https://github.com/SnakeskinTpl/ss2vue) compiles Snakeskin for Vue2
 
-### adaptorOptions
+### adapterOptions
 
 Type: `Object`
 

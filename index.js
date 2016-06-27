@@ -54,8 +54,8 @@ module.exports = function (opts) {
 		}
 
 		if (file.isBuffer()) {
-			if (opts.adaptor || opts.jsx) {
-				return require(opts.jsx ? 'ss2react' : opts.adaptor).adaptor(String(file.contents), opts, info).then(
+			if (opts.adapter || opts.jsx) {
+				return require(opts.jsx ? 'ss2react' : opts.adapter).adapter(String(file.contents), opts, info).then(
 					function (res) {
 						file.contents = new Buffer(res);
 						cb(null, file);
