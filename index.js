@@ -6,7 +6,7 @@
  * https://github.com/SnakeskinTpl/gulp-snakeskin/blob/master/LICENSE
  */
 
-require('core-js/es6/object');
+require('core-js');
 
 var
 	through = require('through2'),
