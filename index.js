@@ -1,3 +1,5 @@
+'use strict';
+
 /*!
  * gulp-snakeskin
  * https://github.com/SnakeskinTpl/gulp-snakeskin
@@ -6,28 +8,28 @@
  * https://github.com/SnakeskinTpl/gulp-snakeskin/blob/master/LICENSE
  */
 
-require('core-js');
-
-var
+const
 	through = require('through2'),
 	PluginError = require('gulp-util').PluginError,
 	ext = require('gulp-util').replaceExtension;
 
-var
+const
 	snakeskin = require('snakeskin'),
 	beautify = require('js-beautify'),
 	exists = require('exists-sync'),
 	path = require('path');
 
 module.exports = function (opts) {
-	var ssrc = path.join(process.cwd(), '.snakeskinrc');
+	const
+		ssrc = path.join(process.cwd(), '.snakeskinrc');
+
 	if (!opts && exists(ssrc)) {
 		opts = snakeskin.toObj(ssrc);
 	}
 
 	opts = Object.assign({eol: '\n'}, opts);
 
-	var
+	const
 		eol = opts.eol,
 		prettyPrint = opts.prettyPrint,
 		nRgxp = /\r?\n|\r/g;
@@ -39,8 +41,9 @@ module.exports = function (opts) {
 		opts.prettyPrint = false;
 	}
 
-	function compile(file, enc, cb) {
-		var info = {file: file.path};
+	function compile(file, ignore_enc, cb) {
+		const
+			info = {file: file.path};
 
 		if (opts.exec) {
 			file.path = ext(file.path, '.html');
@@ -56,33 +59,35 @@ module.exports = function (opts) {
 		if (file.isBuffer()) {
 			if (opts.adapter || opts.jsx) {
 				return require(opts.jsx ? 'ss2react' : opts.adapter).adapter(String(file.contents), opts, info).then(
-					function (res) {
+					(res) => {
 						file.contents = new Buffer(res);
 						cb(null, file);
 					},
 
-					function (err) {
+					(err) => {
 						cb(new PluginError('gulp-snakeskin', err.message));
 					}
 				);
 			}
 
 			try {
-				var tpls = {};
+				const
+					tpls = {};
 
 				if (opts.exec) {
 					opts.module = 'cjs';
 					opts.context = tpls;
 				}
 
-				var res = snakeskin.compile(String(file.contents), opts, info);
+				let
+					res = snakeskin.compile(String(file.contents), opts, info);
 
 				if (opts.exec) {
 					res = snakeskin.getMainTpl(tpls, info.file, opts.tpl) || '';
 
 					if (res) {
 						return snakeskin.execTpl(res, opts.data).then(
-							function (res) {
+							(res) => {
 								if (prettyPrint) {
 									res = beautify.html(res);
 								}
@@ -91,7 +96,7 @@ module.exports = function (opts) {
 								cb(null, file);
 							},
 
-							function (err) {
+							(err) => {
 								cb(new PluginError('gulp-snakeskin', err.message));
 							}
 						);

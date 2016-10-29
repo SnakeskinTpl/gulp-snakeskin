@@ -28,13 +28,13 @@
     "snakeskin"
   ],
   "dependencies": {
-    "core-js": "^2.4.0",
     "exists-sync": "0.0.3",
     "gulp-util": "^3.0.1",
     "js-beautify": "^1.5.4",
     "through2": "^2.0.0"
   },
   "devDependencies": {
+    "babel-eslint": "^7.1.0",
     "eslint": "^3.0.0",
     "gulp": "^3.9.0",
     "snakeskin": "^7.1.9"
