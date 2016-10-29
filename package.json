@@ -18,7 +18,7 @@
     "url": "https://github.com/SnakeskinTpl/gulp-snakeskin/issues"
   },
   "engines": {
-    "node": ">= 0.10"
+    "node": ">= 4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0"
