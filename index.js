@@ -27,7 +27,7 @@ module.exports = function (opts) {
 		opts = snakeskin.toObj(ssrc);
 	}
 
-	opts = Object.assign({eol: '\n'}, opts);
+	opts = Object.assign({eol: '\n', dext: '.html'}, opts);
 
 	const
 		eol = opts.eol,
@@ -46,7 +46,7 @@ module.exports = function (opts) {
 			info = {file: file.path};
 
 		if (opts.exec) {
-			file.path = ext(file.path, '.html');
+			file.path = ext(file.path, opts.dext);
 
 		} else {
 			file.path += '.js';

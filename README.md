@@ -54,6 +54,14 @@ Default: `false`
 
 If the parameter is set to `true` the template will be launched after compiling and the results of it work will be saved.
 
+### dext
+
+Type: `String`
+
+Default: `'.html'`
+
+Extension of a file with result after template execution (using with `exec`).
+
 ### tpl
 
 Type: `String`
