@@ -21,10 +21,10 @@ const
 
 module.exports = function (opts) {
 	const
-		ssrc = path.join(process.cwd(), '.snakeskinrc');
+		src = path.join(process.cwd(), '.snakeskinrc');
 
-	if (!opts && exists(ssrc)) {
-		opts = snakeskin.toObj(ssrc);
+	if (!opts && exists(src)) {
+		opts = snakeskin.toObj(src);
 	}
 
 	opts = Object.assign({eol: '\n', dext: '.html'}, opts);
