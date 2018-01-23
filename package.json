@@ -34,6 +34,7 @@
     "through2": "^2.0.0"
   },
   "devDependencies": {
+    "@types/through2": "^2.0.33",
     "eslint": "^4.0.0",
     "gulp": "^4.0.0",
     "snakeskin": "^7.1.9"
