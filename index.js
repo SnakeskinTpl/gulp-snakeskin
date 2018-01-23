@@ -9,21 +9,23 @@
  */
 
 const
+	fs = require('fs'),
+	path = require('path');
+
+const
 	through = require('through2'),
-	PluginError = require('gulp-util').PluginError,
-	ext = require('gulp-util').replaceExtension;
+	PluginError = require('plugin-error'),
+	ext = require('replace-ext');
 
 const
 	snakeskin = require('snakeskin'),
-	beautify = require('js-beautify'),
-	exists = require('exists-sync'),
-	path = require('path');
+	beautify = require('js-beautify');
 
 module.exports = function (opts) {
 	const
 		src = path.join(process.cwd(), '.snakeskinrc');
 
-	if (!opts && exists(src)) {
+	if (!opts && fs.existsSync(src)) {
 		opts = snakeskin.toObj(src);
 	}
 
