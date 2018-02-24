@@ -62,7 +62,7 @@ module.exports = function (opts) {
 			if (opts.adapter || opts.jsx) {
 				return require(opts.jsx ? 'ss2react' : opts.adapter).adapter(String(file.contents), opts, info).then(
 					(res) => {
-						file.contents = new Buffer(res);
+						file.contents = Buffer.from(res);
 						cb(null, file);
 					},
 
@@ -94,7 +94,7 @@ module.exports = function (opts) {
 									res = beautify.html(res);
 								}
 
-								file.contents = new Buffer(res.replace(nRgxp, eol) + eol);
+								file.contents = Buffer.from(res.replace(nRgxp, eol) + eol);
 								cb(null, file);
 							},
 
@@ -105,7 +105,7 @@ module.exports = function (opts) {
 					}
 				}
 
-				file.contents = new Buffer(res);
+				file.contents = Buffer.from(res);
 				cb(null, file);
 
 			} catch (err) {
