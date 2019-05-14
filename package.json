@@ -28,16 +28,16 @@
     "snakeskin"
   ],
   "dependencies": {
-    "js-beautify": "^1.5.4",
+    "js-beautify": "^1.10.0",
     "plugin-error": "^1.0.1",
     "replace-ext": "^1.0.0",
-    "through2": "^2.0.0"
+    "through2": "^2.0.5"
   },
   "devDependencies": {
-    "@types/through2": "^2.0.33",
-    "eslint": "^4.18.1",
-    "gulp": "^4.0.0",
-    "snakeskin": "^7.2.9"
+    "@types/through2": "^2.0.34",
+    "eslint": "^5.16.0",
+    "gulp": "^4.0.2",
+    "snakeskin": "^7.5.1"
   },
   "peerDependencies": {
     "gulp": "*",
